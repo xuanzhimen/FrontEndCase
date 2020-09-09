@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li {
+            display: block;
+            float: left;
+            border: skyblue 1px solid;
+        }
+        img {
+            display: block;
+            float: left;
+        }
+        .active {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div>
+        <ul>
+            <li :class="item.id==currentIndex?'active':''"
+                :key="item.id"
+                v-for="item in ulList"
+                @click="handle(item.id)">{{item.fName}}</li>
+        </ul>
+    </div>
+    <div>
+        <img v-if="item.id==currentIndex" :key="item.id" v-for="item in ulList" :src="item.fImg" alt="">
+    </div>
+</div>
+
+<script type="text/javascript" src="../vue.js"></script>
+<script>
+    let vue = new Vue({
+        el: '#app',
+        data: {
+            ulList: [
+                {
+                    id: 1,
+                    fName: '苹果',
+                    fImg: 'img/apple.png'
+                },
+                {
+                    id: 2,
+                    fName: '橘子',
+                    fImg: 'img/orange.png'
+                },
+                {
+                    id: 3,
+                    fName: '柠檬',
+                    fImg: 'img/lemon.png'
+                }
+            ],
+            currentIndex: 1
+        },
+        methods: {
+            handle: function (index) {
+                this.currentIndex = index;
+
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
